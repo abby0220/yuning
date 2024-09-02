@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>股市分析 以台積電為例</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-lg order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        class="fas fa-bars"></i></button>
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Abby's</a>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <!--SideNav Menu-->
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <!--基本資料-->
+            <div class="sb-sidenav-menu-heading">基本資料</div>
+            <a class="nav-link" href="index.html">
+              <div class="sb-nav-link-icon"><i class="bi bi-person-circle"></i></div>
+              個人簡歷
+            </a>
+            <!--作品集-->
+            <div class="sb-sidenav-menu-heading">作品集</div>
+            <!--深度學習-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              深度學習
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="MNIST.html">MNIST 手寫辨識</a>
+                <a class="nav-link" href="cifar10.html">CIFAR-10 彩色影像辨識</a>
+                <a class="nav-link" href="beanleaf.html">Kaggle Dataset 豆葉病害分類</a>
+              </nav>
+            </div>
+            <!--資料處理-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+              aria-expanded="false" aria-controls="collapsePages">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              資料處理
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="covid.html">台灣2024新冠年齡層統計</a>
+                <a class="nav-link" href="2330.html">股市分析 以台積電為例</a>
+              </nav>
+            </div>
+
+            <!--Python 基礎應用-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePython"
+              aria-expanded="false" aria-controls="collapsePython">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-p-square"></i>
+              </div>
+              Python 基礎應用
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePython" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="PSTGame.html">剪刀石頭布小遊戲</a>
+                <a class="nav-link" href="Dice.html">擲骰子小遊戲</a>
+                <a class="nav-link" href="tarot.html">LINE官方帳號結合Gemini塔羅牌占卜</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--===============================-->
+    <!--Content-->
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">股市分析 以台積電為例</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">作品集</li>
+            <li class="breadcrumb-item">資料處理</li>
+            <li class="breadcrumb-item active">股市分析 以台積電為例</li>
+          </ol>
+          <!--實驗方法-->
+          <div class="container mb-4">
+            <h2>說明</h2>
+            <p>使用 yfinance 套件下載台積電（2330.TW）在 2024 年 1 月 1 日至 2024 年 8 月 29 日之間的股價資料，並進行多項技術指標的計算，最後繪製出包含 K
+              線圖、移動平均線（SMA）、布林帶（Bollinger Bands）、KDJ 指標、OBV（成交量淨額）、以及 MACD
+              的技術分析圖表。有助於深入理解台積電股價在所選時間範圍內的趨勢和波動。更多的爬蟲步驟請見我的<a
+                href="https://drive.google.com/file/d/1JBxeRaPqO-SZ_Olp2zUKTHaG8KVn12Dp/view?usp=sharing"><i
+                  class="bi bi-box-arrow-up-right"></i>Google Colab連結</a>。</p>
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="bi bi-image"></i> 2024年1月1日 - 2024年8月29日 2330台積電 股市分析 圖表
+              </div>
+              <div class="card-body">
+                <img src="assets/img/2330/Figure_1.png" alt="2024年1月1日 - 2024年8月29日 2330台積電 股市分析 圖表" class="img-fluid">
+                <div class="text-muted text-end">
+                  Updated at August-30-2024
+                </div>
+              </div>
+            </div>
+            <hr>
+
+            <h2>各項指標說明</h2>
+            <div>
+              <ul>
+                <li>移動平均線（SMA）的計算：計算 5 日、20 日和 60 日的移動平均線，這些均線有助於觀察股價的短期、中期及長期趨勢。
+                </li>
+                <li>KDJ 指標的計算：計算 RSV（未成熟隨機值），然後根據公式計算 K 值和 D 值，接著計算 J 值。KDJ 是一種常用於技術分析的震盪指標。</li>
+                <li>OBV（成交量淨額）的計算：當股價上漲時，將成交量加至 OBV；反之，當股價下跌時，將成交量從 OBV 中扣除，最終得到一條累積曲線。</li>
+                <li>MACD 指標的計算：計算 12 日和 26 日的指數移動平均線（EMA），求出兩者的差值（DIF），再計算 MACD 線和 MACD 柱狀圖，以判斷市場的多空趨勢。</li>
+              </ul>
+            </div>
+            <hr>
+            <h2>Python 程式碼</h2>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  import yfinance as yf
+                  from datetime import datetime
+                  import matplotlib.pyplot as plt
+                  import mplfinance.original_flavor as mpf
+                  from mplfinance.original_flavor import candlestick_ohlc
+                  import pandas as pd
+                  import numpy as np
+                  import matplotlib
+                  matplotlib.rc('font', family='Microsoft JhengHei')
+                  stock_id = '2330.TW'
+                  start_date = datetime(2024,1,1)
+                  end_date = datetime(2024,8,29)
+                  df = yf.download(stock_id, start=start_date, end=end_date)
+                  df.index = df.index.map(lambda x: x.strftime('%y-%m-%d'))
+                  # 計算SMA
+                  df['SMA_5'] = df['Close'].rolling(window=5).mean()
+                  df['SMA_20'] = df['Close'].rolling(window=20).mean()
+                  df['SMA_60'] = df['Close'].rolling(window=60).mean()
+
+                  # 計算布林帶
+                  df['middle_band'] = df['SMA_20']
+                  df['std_dev'] = df['Close'].rolling(window=20).std()
+                  df['upper_band'] = df['middle_band'] + (df['std_dev'] * 2)
+                  df['lower_band'] = df['middle_band'] - (df['std_dev'] * 2)
+
+                  # 計算KDJ線
+                  # 計算RSV
+                  n = 9
+                  low_min = df['Low'].rolling(window=n).min()
+                  high_max = df['High'].rolling(window=n).max()
+                  df['RSV'] = ((df['Close'] - low_min) / (high_max - low_min)) * 100
+                  # 初始化K值和D值
+                  df['K'] = pd.Series(index=df.index)
+                  df['D'] = pd.Series(index=df.index)
+
+                  # 第9天，使用.iloc[]
+                  df.loc[df.index[8], 'K'] = 50
+                  df.loc[df.index[8], 'D'] = 50
+
+                  # 計算K值和D值
+                  for i in range(9, len(df)): # 從第10天開始計算
+                  df.loc[df.index[i], 'K'] = df.loc[df.index[i-1], 'K'] * (2/3) + df.loc[df.index[i], 'RSV'] * (1/3)
+                  df.loc[df.index[i], 'D'] = df.loc[df.index[i-1], 'D'] * (2/3) + df.loc[df.index[i], 'K'] * (1/3)
+
+                  # 計算J值
+                  df['3K-2D'] = 3 * df['K'] - 2 * df['D']
+                  df['J'] = 3 * df['D'] - 2 * df['K']
+
+                  # 計算OBV
+                  df['OBV'] = np.where(df['Close'] > df['Close'].shift(1), df['Volume'], -df['Volume'])
+                  df['OBV'] = df['OBV'].cumsum()
+
+                  # 計算 MACD
+                  fast_period = 12
+                  slow_period = 26
+                  signal_period = 9
+                  df.loc[df.index[12]:,'EMA12'] = df['Adj Close'].ewm(span=12, adjust=False).mean()
+                  df.loc[df.index[26]:,'EMA26'] = df['Adj Close'].ewm(span=26, adjust=False).mean()
+
+                  # 初始化
+                  df.loc[:df.index[fast_period-1], 'EMA12'] = 0
+                  df.loc[:df.index[slow_period-1], 'EMA26'] = 0
+                  df['DIF'] = df['EMA12'] - df['EMA26']
+                  df.loc[:df.index[slow_period-1], 'DIF'] = 0
+                  df['MACD'] = df['DIF'].ewm(span=signal_period, adjust=False).mean()
+                  df['MACD Histogram'] = df['DIF'] - df['MACD']
+                  macd_colors = np.where(df['MACD Histogram'] >= 0, 'r', 'g')
+
+                  # 繪圖
+                  fig = plt.figure(figsize=(14,9), layout='constrained')
+                  ax1 = fig.add_subplot(6,1,(1,3))
+                  ax1.set_xticks(range(0,len(df.index),10))
+                  ax1.set_xticklabels(df.index[::10])
+                  mpf.candlestick2_ochl(ax1, df['Open'], df['Close'], df['High'], df['Low'], width=0.8, colorup='r',
+                  colordown='g', alpha=1)
+                  ax1.plot(df['SMA_5'],label='5日均線',alpha=0.9,color='b')
+                  ax1.plot(df['SMA_20'],label='20日均線',alpha=0.9,color='orange')
+                  ax1.plot(df['SMA_60'],label='60日均線',alpha=0.9,color='g')
+                  ax1.plot(df['upper_band'], label='upperband',alpha=0.9,color='purple',ls=':')
+                  ax1.plot(df['lower_band'], label='lowerband',alpha=0.9,color='purple',ls=':')
+                  ax1.legend(loc=0)
+                  ax1.set_title("2024年1月1日 - 2024年8月29日 2330台積電 股市分析")
+                  ax2 = fig.add_subplot(6,1,5)
+                  ax2.set_xticks(range(0,len(df.index),10))
+                  ax2.set_xticklabels([])
+                  colors = np.where(df['Close'] > df['Close'].shift(1), 'r', 'g')
+                  ax2.plot(df['OBV'],color='purple',linestyle='--',label='OBV')
+                  ax2.legend(loc=2)
+                  ax2_1 = ax2.twinx()
+                  ax2_1.bar(df.index,height=df['Volume'], color=colors, width=0.8, alpha=0.8,label='Volume')
+                  ax2_1.legend(loc=1)
+                  ax3 = fig.add_subplot(6,1,4)
+                  ax3.plot(df['K'], label='K line')
+                  ax3.plot(df['D'], label='D line')
+                  ax3.plot(df['J'], label='J line',linestyle='--')
+                  ax3.set_xticks(range(0,len(df.index),10))
+                  ax3.set_xticklabels([])
+                  ax3.legend(loc=0)
+                  ax4 = fig.add_subplot(6,1,6)
+                  ax4.plot(df['DIF'], label='DIF',color='orange')
+                  ax4.plot(df['MACD'], label='MACD',color='blue')
+                  ax4.bar(df.index,height=df['MACD Histogram'] ,color=macd_colors,label='MACD Histogram')
+                  ax4.set_xticks(range(0,len(df.index),10))
+                  ax4.set_xticklabels(df.index[::10])
+                  ax4.legend(loc=2)
+                  plt.show()
+
+                </code>
+              </pre>
+            </div>
+            <hr>
+            <h5>相關連結</h5>
+            <a href="https://drive.google.com/file/d/1JBxeRaPqO-SZ_Olp2zUKTHaG8KVn12Dp/view?usp=sharing"><i
+                class="bi bi-code-square"></i> Google
+              Colab連結</a> &middot;
+            <a href="https://tw.stock.yahoo.com/quote/2330.TW/technical-analysis"><i
+                class="bi bi-box-arrow-up-right"></i>
+              yahoo!股市 台積電 技術分析</a>
+          </div>
+        </div>
+      </main>
+      <!--================================-->
+      <!--footer-->
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+          </div>
+        </div>
+      </footer>
+      <!--================================-->
+    </div>
+  </div>
+  <!--Scripts-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>

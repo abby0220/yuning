@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>擲骰子小遊戲</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-lg order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        class="fas fa-bars"></i></button>
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Abby's</a>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <!--SideNav Menu-->
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <!--基本資料-->
+            <div class="sb-sidenav-menu-heading">基本資料</div>
+            <a class="nav-link" href="index.html">
+              <div class="sb-nav-link-icon"><i class="bi bi-person-circle"></i></div>
+              個人簡歷
+            </a>
+            <!--作品集-->
+            <div class="sb-sidenav-menu-heading">作品集</div>
+            <!--深度學習-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              深度學習
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="MNIST.html">MNIST 手寫辨識</a>
+                <a class="nav-link" href="cifar10.html">CIFAR-10 彩色影像辨識</a>
+                <a class="nav-link" href="beanleaf.html">Kaggle Dataset 豆葉病害分類</a>
+              </nav>
+            </div>
+            <!--資料處理-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+              aria-expanded="false" aria-controls="collapsePages">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              資料處理
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="covid.html">台灣2024新冠年齡層統計</a>
+                <a class="nav-link" href="2330.html">股市分析 以台積電為例</a>
+              </nav>
+            </div>
+
+            <!--Python 基礎應用-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePython"
+              aria-expanded="false" aria-controls="collapsePython">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-p-square"></i>
+              </div>
+              Python 基礎應用
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePython" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="PSTGame.html">剪刀石頭布小遊戲</a>
+                <a class="nav-link" href="Dice.html">擲骰子小遊戲</a>
+                <a class="nav-link" href="tarot.html">LINE官方帳號結合Gemini塔羅牌占卜</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--===============================-->
+    <!--Content-->
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">擲骰子小遊戲</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">作品集</li>
+            <li class="breadcrumb-item">Python 基礎應用</li>
+            <li class="breadcrumb-item active">擲骰子小遊戲</li>
+          </ol>
+          <div class="container mb-4">
+            <!--實驗方法-->
+            <div class="container mb-4">
+              <h2>簡易網頁版</h2>
+              <div class="card border-dark mb-3 col-xl-4">
+                <div class="card-header bg-info text-white" style="text-align: center;">
+                  <h2>擲骰子小遊戲</h2>
+                </div>
+                <div class="card-body" style="font-size: 20px; text-align: center;">
+                  <p id="message" class="lead text-purple">試試您的手氣擲骰子</p>
+                  <div class="row justify-content-center mt-4">
+                    <div class="col-2 text-center">
+                      <img id="playerDice1" class="img-fluid" src="assets/img/Dice/d11.png" alt="骰子1">
+                    </div>
+                    <div class="col-2 text-center">
+                      <img id="playerDice2" class="img-fluid" src="assets/img/Dice/d11.png" alt="骰子2">
+                    </div>
+                    <div class="col-2 text-center">
+                      <img id="playerDice3" class="img-fluid" src="assets/img/Dice/d11.png" alt="骰子3">
+                    </div>
+                    <div class="col-2 text-center">
+                      <img id="playerDice4" class="img-fluid" src="assets/img/Dice/d11.png" alt="骰子4">
+                    </div>
+                  </div>
+                  <div class="row mt-4 text-center">
+                    <div class="col">
+                      <button id="playerButton" class="btn btn-success">客家擲骰子</button>
+                    </div>
+                    <div class="col">
+                      <button id="dealerButton" class="btn btn-primary" disabled>莊家擲骰子</button>
+                    </div>
+                  </div>
+                  <div class="row mt-4 text-center">
+                    <div class="col">
+                      <h2 id="resultMessage"></h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+              <script src="js\diceGame.js"></script>
+            </div>
+            <hr>
+          </div>
+          <div class="container mb-4">
+            <h2>Python 版本</h2>
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <i class="bi bi-image"></i>
+                    Python版本展示
+                  </div>
+                  <div class="card-body text-center"><img src="assets/img/Dice/樣式1.png" alt="Python版本展示"
+                      class="img-fluid">
+                    <div class="text-muted text-end">
+                      Updated at August-29-2024
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <i class="bi bi-image"></i>
+                    遊玩展示
+                  </div>
+                  <div class="card-body text-center"><img src="assets/img/Dice/樣式2.png" alt="Python版本遊玩展示"
+                      class="img-fluid">
+                    <div class="text-muted text-end">
+                      Updated at August-29-2024
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2>Python 程式碼</h2>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  import tkinter as tk
+                  from tkinter import Canvas
+                  from PIL import Image, ImageTk
+                  from random import randint
+                  import pygame
+                  from gtts import gTTS
+                  from io import BytesIO
+
+                  def init_pygame():
+                  pygame.mixer.init()
+                  pygame.mixer.music.set_volume(0.5) # 設置背景音樂音量
+                  pygame.mixer.music.load('JTW.mp3') # 加載背景音樂文件
+                  pygame.mixer.music.play(-1) # 無限循環播放背景音樂
+
+                  def speak_chinese_tw(msg):
+                  # 創建 gTTS 對象，指定繁體中文
+                  tts = gTTS(msg, lang='zh-TW')
+                  fp = BytesIO()
+                  tts.write_to_fp(fp)
+                  fp.seek(0)
+                  # 使用一個新的聲道，避免與背景音樂衝突
+                  voice_sound = pygame.mixer.Sound(fp)
+                  voice_channel.play(voice_sound)
+                  #while voice_channel.get_busy():
+                  #pygame.time.Clock().tick(10)
+
+                  # 打開圖片，並調整到指定的大小
+                  def load_image(image_path, size=(50, 50)):
+                  image = Image.open(image_path)
+                  resized_image = image.resize(size, Image.Resampling.LANCZOS) # 使用LANCZOS方法來縮放
+                  return ImageTk.PhotoImage(resized_image)
+
+                  def roll_dice_animation(label, final_value, interval=50, changes=5, callback=None):
+                  if changes > 0:
+                  # Display a random dice roll image resized to 50x50 pixels
+                  random_image = load_image(f"dice_roll/dr{randint(1, 12)}.png", size=(120, 120))
+                  label.create_image(60, 60, image=random_image, anchor='center')
+                  label.image = random_image # keep a reference
+                  # Schedule the next change
+                  window.after(interval, lambda: roll_dice_animation(label, final_value, interval, changes - 1,
+                  callback))
+                  else:
+                  # Display the final dice image randomly from the set corresponding to the final_value resized to 50x50
+                  pixels
+                  final_image = load_image(f"dice/d{final_value}{randint(1, 4)}.png", size=(100, 100))
+                  label.create_image(50, 50, image=final_image, anchor='center')
+                  label.image = final_image # keep a reference
+                  if callback:
+                  callback()
+
+
+                  def start_dice_animation(player, dice):
+                  for i, value in enumerate(dice):
+                  if player == 'dealer':
+                  roll_dice_animation(mini_canvases[i], value, changes=20, callback=lambda: finalize_roll(player, dice))
+                  else:
+                  roll_dice_animation(mini_canvases[i], value, changes=20, callback=lambda: finalize_roll(player, dice))
+
+
+                  def finalize_roll(player, dice):
+                  global animation_done, dealer_msg, player_msg,dealer_tts, player_tts
+                  animation_done += 1
+                  if animation_done == 4: # Ensure all animations are done
+                  score ,msg ,tts = calculate_score(dice)
+                  if player == 'player':
+                  player_score.set(score)
+                  player_msg = msg
+                  player_tts = tts
+                  message_label['text'] = "客家"+msg+str(int(score))+'分'
+                  speak_chinese_tw(f'客家{player_tts}{int(score)}分')
+                  player_button['state'] = 'disabled'
+                  dealer_button['state'] = 'normal'
+                  for i, label in enumerate(player_dice_labels):
+                  final_value=dice[i]
+                  final_image = load_image(f"dice/d{final_value}{randint(1, 4)}.png", size=(60, 60))
+                  label.config(image=final_image)
+                  label.image = final_image
+
+                  else:
+                  dealer_score.set(score)
+                  dealer_msg = msg
+                  dealer_tts = tts
+                  dealer_button['state'] = 'disabled'
+                  player_button['state'] = 'normal'
+                  for i, label in enumerate(dealer_dice_labels):
+                  final_value=dice[i]
+                  final_image = load_image(f"dice/d{final_value}{randint(1, 4)}.png", size=(60, 60))
+                  label.config(image=final_image)
+                  label.image = final_image
+                  determine_winner()
+                  animation_done = 0 # Reset for the next round
+
+                  def roll_dice(player):
+                  dice = [randint(1, 6) for _ in range(4)]
+                  if player == 'player':
+                  # Clear previous dice images for dealer
+                  for label in dealer_dice_labels + player_dice_labels:
+                  label.config(image='', text='') # clear the label
+                  message_label['text'] = ""
+                  whowin_label['text'] = ""
+                  start_dice_animation(player, dice)
+                  # 播放語音
+                  sound_channel.play(sound_effect)
+
+                  def calculate_score(dice):
+                  dice.sort(reverse=True) # Sort dice in descending order
+                  if len(set(dice)) == 1: # 豹子
+                  score = 40 + dice[0]
+                  msg_score="🤠豹子"
+                  msg_tts = "豹子"
+                  elif len(set(dice)) == 2: # 對子
+                  max_count = max([dice.count(x) for x in set(dice)])
+                  if max_count == 3:
+                  pair = max(set(dice), key=dice.count)
+                  single = min(set(dice), key=dice.count)
+                  score = 30 + pair + 0.1 * single
+                  msg_score="🤗三條"
+                  msg_tts = "三條"
+                  else:
+                  pair_max = max(set(dice))
+                  pair_min = min(set(dice))
+                  score = 20 + pair_max + 0.1 * pair_min
+                  msg_score="😍雙對子"
+                  msg_tts="雙對子"
+                  elif len(set(dice)) == 3:
+                  pair = max(set(dice), key=dice.count)
+                  score = 10+pair+0.1*(sum(set(dice))-pair)
+                  msg_score="😇單對子"
+                  msg_tts="單對子"
+                  else: # 四個數字不同
+                  score = sum(dice)*0.1+0.1*max(dice)
+                  msg_score="😅GG!!!"
+                  msg_tts="您手氣不好"
+                  return score*10 , msg_score, msg_tts
+
+                  def determine_winner():
+                  dealer = dealer_score.get()
+                  player = player_score.get()
+                  if dealer > player:
+                  message_label['text'] = f'莊{dealer_msg}-{dealer}分/客{player_msg}-{player}分'
+                  whowin_label['text'] = '莊家贏了！'
+                  speak_chinese_tw(f'莊家{dealer_tts}{dealer}分,莊家贏了')
+                  elif dealer < player: message_label['text']=f'莊{dealer_msg}-{dealer}分/客{player_msg}-{player}分'
+                    whowin_label['text']='客家贏了！' speak_chinese_tw(f'莊家{dealer_tts}{dealer}分,客家贏了') else:
+                    message_label['text']=f'莊{dealer_msg}-{dealer}分/客{player_msg}-{player}分'
+                    whowin_label['text']='打成平手！' speak_chinese_tw(f'莊家{dealer_tts}{dealer}分,打成平手') def close_window():
+                    pygame.mixer.music.stop() window.destroy() def move_window(event):
+                    window.geometry(f'+{event.x_root}+{event.y_root}') # Initialization init_pygame()
+                    sound_channel=pygame.mixer.Channel(1) voice_channel=pygame.mixer.Channel(2)
+                    sound_effect=pygame.mixer.Sound('sba.mp3') sound_effect.set_volume(1.0) animation_done=0 # 初始化視窗
+                    window=tk.Tk() window.overrideredirect(True) # 移除窗口邊框和標題欄 window.geometry("720x700") # 設定視窗大小 #
+                    自定義標題欄 title_bar=tk.Frame(window, bg='blue' , relief='raised' , bd=0) title_bar.pack(fill='x' ) #
+                    加載並顯示窗口圖標 icon_image=load_image('sbax.png', size=(36, 36)) icon_label=tk.Label(title_bar,
+                    image=icon_image, bg='blue' ) icon_label.image=icon_image # 保持對圖標的引用 icon_label.pack(side='left' ,
+                    padx=(10, 0)) # 自定義標題欄上的標題 title=tk.Label(title_bar, text="十八辣丟骰子遊戲強哥歡樂版" , fg='yellow' ,bg='blue' ,
+                    font=("Microsoft JhengHei", 16)) title.pack(side='left' , padx=10) # 自定義關閉按鈕
+                    close_button=tk.Button(title_bar, text='X' , font=("Arial Black", 16),command=close_window,
+                    bg='black' , fg='white' , borderwidth=0) close_button.pack(side='right' ) # 拖動功能
+                    title_bar.bind('<B1-Motion>', move_window)
+                    #增加Canvas Frame
+                    canvas_frame = tk.Frame(window)
+                    canvas_frame.pack(expand=True, fill='both')
+
+                    # 建立主 Canvas，設定尺寸
+                    main_canvas = Canvas(canvas_frame, width=720, height=400)
+                    main_canvas.pack(fill='both', expand=True)
+                    bg_img=f'Tk_canva{randint(0,2)}.png'
+                    bg_image = load_image(bg_img,(720, 400))
+                    # 在 Canvas 上设置背景图片
+                    main_canvas.create_image(0, 0, image=bg_image, anchor='nw')
+                    # 小 Canvas 的主要圖片路徑
+                    resized_image = Image.open(bg_img).resize((720, 400), Image.Resampling.LANCZOS)
+                    # 設定小 Canvas 的位置和尺寸
+                    positions = [
+                    (140, 230), # 第一個小 Canvas 的位置
+                    (280, 160), # 第二個
+                    (280, 280), # 第三個
+                    (430, 230) # 第四個
+                    ]
+
+                    mini_canvas_size = (120,120)
+                    mini_canvases = []
+
+                    for x, y in positions:
+                    # 截取背景圖像
+                    crop_image = resized_image.crop((x, y, x + mini_canvas_size[0], y + mini_canvas_size[1]))
+                    photo1 = ImageTk.PhotoImage(crop_image)
+                    # 創建小 Canvas，設置截取的圖片為背景
+                    mini_canvas = Canvas(main_canvas, width=mini_canvas_size[0], height=mini_canvas_size[1], bd=0,
+                    highlightthickness=0)
+                    mini_canvas.create_image(0, 0, image=photo1, anchor='nw')
+                    mini_canvas.photo1 = photo1 # 保存引用，防止被垃圾回收
+                    mini_canvases.append(mini_canvas)
+                    # 將小 Canvas 放置在主 Canvas 上
+                    main_canvas.create_window(x, y, anchor='nw', window=mini_canvas)
+
+
+                    # 主框架，用於包含原有代碼的組件
+                    main_frame = tk.Frame(window)
+                    main_frame.pack(expand=True, fill='both')
+                    image = Image.new("RGBA", (100, 100), (255, 255, 255, 0))
+                    photo = ImageTk.PhotoImage(image)
+                    dealer_dice_labels = [tk.Label(main_frame, image=photo, borderwidth=2, relief="groove", width=50,
+                    height=50, font=('Arial', 30)) for _ in range(4)]
+                    player_dice_labels = [tk.Label(main_frame, image=photo, borderwidth=2, relief="groove", width=50,
+                    height=50, font=('Arial', 30)) for _ in range(4)]
+
+                    # Position dice labels using grid
+                    for i, label in enumerate(dealer_dice_labels):
+                    label.grid(row=0, column=i, padx=4, pady=4, sticky='nsew')
+                    #label.grid_propagate(False) # Prevent resizing based on content
+                    label.config(width=50, height=50)
+                    for i, label in enumerate(player_dice_labels):
+                    label.grid(row=0, column=i+4, padx=4, pady=4, sticky='nsew')
+                    #label.grid_propagate(False) # Prevent resizing based on content
+                    label.config(width=50, height=50)
+
+                    # Buttons
+                    dealer_button = tk.Button(main_frame, text='莊家', font=('Arial', 16),fg='blue',command=lambda:
+                    roll_dice('dealer'), state='disabled')
+                    player_button = tk.Button(main_frame, text='客家',font=('Arial', 16),fg='green', command=lambda:
+                    roll_dice('player'), state='normal')
+
+                    # Position buttons using grid
+                    dealer_button.grid(row=1, column=2, pady=10)
+                    player_button.grid(row=1, column=5, pady=10)
+
+                    # Score variables
+                    dealer_score = tk.IntVar()
+                    player_score = tk.IntVar()
+                    whowin = tk.StringVar()
+                    dealer_msg = player_msg = dealer_tts = player_tts =""
+
+                    # Message label
+                    #message_label = tk.Label(window, text='試試您的手氣強哥十八辣對對碰!', font=('Arial', 16),fg='purple',)
+                    transparent_image = tk.PhotoImage(width=1, height=1)
+                    message_label = tk.Label(main_frame, text='試試您的手氣擲骰子', font=("Microsoft JhengHei", 16), fg='purple',
+                    image=transparent_image, compound='center', height=50)
+                    message_label.grid(row=2, column=1, columnspan=5, pady=10, sticky='nsew')
+                    message_label.image = transparent_image
+                    whowin_label = tk.Label(main_frame, text='對對碰!', font=("Microsoft JhengHei", 16), fg='red')
+                    whowin_label.grid(row=2, column=6,columnspan=2, pady=10,sticky='w')
+                    for i in range(8):
+                    main_frame.grid_columnconfigure(i, weight=1, minsize=90)
+                    for i in range(2):
+                    main_frame.grid_rowconfigure(i, weight=1, minsize=90)
+                    speak_chinese_tw('擲骰子小遊戲,試試您的手氣!')
+                    window.mainloop()
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!--===============================-->
+      <!--footer-->
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Abby's Website 2023</div>
+          </div>
+        </div>
+      </footer>
+      <!--===============================-->
+    </div>
+
+  </div>
+  <!--Scripts-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
