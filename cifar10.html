@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>CIFAR-10 彩色影像辨識</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-lg order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        class="fas fa-bars"></i></button>
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Abby's</a>
+  </nav>
+
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <!--SideNav Menu-->
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <!--基本資料-->
+            <div class="sb-sidenav-menu-heading">基本資料</div>
+            <a class="nav-link" href="index.html">
+              <div class="sb-nav-link-icon"><i class="bi bi-person-circle"></i></div>
+              個人簡歷
+            </a>
+            <!--作品集-->
+            <div class="sb-sidenav-menu-heading">作品集</div>
+            <!--深度學習-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              深度學習
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="MNIST.html">MNIST 手寫辨識</a>
+                <a class="nav-link" href="cifar10.html">CIFAR-10 彩色影像辨識</a>
+                <a class="nav-link" href="beanleaf.html">Kaggle Dataset 豆葉病害分類</a>
+              </nav>
+            </div>
+            <!--資料處理-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+              aria-expanded="false" aria-controls="collapsePages">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              資料處理
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="covid.html">台灣2024新冠年齡層統計</a>
+                <a class="nav-link" href="2330.html">股市分析 以台積電為例</a>
+              </nav>
+            </div>
+
+            <!--Python 基礎應用-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePython"
+              aria-expanded="false" aria-controls="collapsePython">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-p-square"></i>
+              </div>
+              Python 基礎應用
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePython" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="PSTGame.html">剪刀石頭布小遊戲</a>
+                <a class="nav-link" href="Dice.html">擲骰子小遊戲</a>
+                <a class="nav-link" href="tarot.html">LINE官方帳號結合Gemini塔羅牌占卜</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!--===============================-->
+    <!--Content-->
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">CIFAR-10 彩色影像辨識</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">作品集</li>
+            <li class="breadcrumb-item">深度學習</li>
+            <li class="breadcrumb-item active">CIFAR-10 彩色影像辨識</li>
+          </ol>
+
+          <!--CIFAR-10介紹-->
+          <div class="container mb-4">
+            <div class="container mb-4">
+              <div>
+                <h2>CIFAR-10 數據集介紹</h2>
+                <p>CIFAR-10數據集是一個廣泛使用的圖像數據集，主要用於機器學習和計算機視覺領域中的圖像分類任務。該數據集由加拿大蒙特利爾大學的Alex Krizhevsky、Vinod Nair和Geoffrey
+                  Hinton收集和整理。</p>
+              </div>
+            </div>
+            <hr>
+            <div class="container mb-4">
+              <div>
+                <h2>CIFAR-10 內容</h2>
+                <div>
+                  <ul>
+                    <li>圖像數量：CIFAR-10數據集包含60,000張彩色圖像，其中50,000張用於訓練，10,000張用於測試。</li>
+                    <li>圖像尺寸：每張圖像的尺寸為32x32像素，並且是RGB（彩色）圖像。</li>
+                    <li>類別數量：CIFAR-10數據集分為10個類別，每個類別包含6,000張圖像。這10個類別分別是：
+                      <ul>
+                        <li>飛機</li>
+                        <li>汽車</li>
+                        <li>鳥</li>
+                        <li>貓</li>
+                        <li>鹿</li>
+                        <li>狗</li>
+                        <li>青蛙</li>
+                        <li>馬</li>
+                        <li>船</li>
+                        <li>卡車</li>
+                      </ul>
+                    </li>
+                    <li>標籤格式：每張圖像對應一個標籤，表示該圖像所屬的類別。標籤是0到9之間的整數，每個數字對應一個類別。</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="container mb-4">
+              <div>
+                <h2>CIFAR-10 特點</h2>
+                <p>CIFAR-10數據集被廣泛使用的原因有以下幾點：</p>
+                <div>
+                  <ul>
+                    <li>標準化：CIFAR-10數據集是一個標準的基準數據集，允許研究人員在相同的數據集上進行比較和評估不同的算法和模型。</li>
+                    <li>多樣性：該數據集包含多種不同類型的圖像，涵蓋了日常生活中的常見物體，有助於測試和評估模型的泛化能力。</li>
+                    <li>大小適中：CIFAR-10數據集的大小適中，使得在普通計算機上訓練和測試模型變得可行，適合作為研究和教學使用的入門數據集。</li>
+                    <li>社群支持：由於CIFAR-10數據集的流行，社群中有大量的文獻、教程和開源代碼可以參考，這對於初學者來說非常友好。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!--ImageCard-->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="bi bi-image"></i>
+                  CIFAR-10 數據集圖片範例
+                </div>
+                <div class="card-body text-center"><img src="assets/img/CIFAR-10img/cifar10sample.png"
+                    alt="CIFAR-10圖片範例" class="img-fluid">
+                  <div class="text-muted text-end">
+                    Updated at July-28-2024
+                  </div>
+                </div>
+                <div class="card-footer small d-grid gap-2 d-md-flex justify-content-md-end">
+                  <!-- Button trigger modal -->
+                  <button class="btn btn-danger me-md-2 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleCFModal"
+                    type="button">程式碼</button>
+                </div>
+              </div>
+              <!-- Modal Start -->
+              <div class="modal fade" id="exampleCFModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl
+modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleCFModalLabel">隨機生成CIFAR-10 範例圖片</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <pre class="bg-light p-3 rounded">
+                        <code>
+                          import tensorflow as tf
+                          import matplotlib.pyplot as plt
+                          import numpy as np
+                          import matplotlib.font_manager as fm
+
+                          # 加載中文字型
+                          font_path = 'C:/Windows/Fonts/msjhbd.ttc' # 微軟正黑體
+                          prop = fm.FontProperties(fname=font_path)
+                          plt.rcParams['font.family'] = prop.get_name()
+
+                          # 1. 加載CIFAR-10數據集
+                          (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
+
+                          # CIFAR-10的類別名稱
+                          class_names = ['飛機', '汽車', '鳥', '貓', '鹿', '狗', '青蛙', '馬', '船', '卡車']
+
+                          # 隨機選擇一些圖片
+                          num_images = 15
+                          random_indices = np.random.choice(x_train.shape[0], num_images, replace=False)
+                          sample_images = x_train[random_indices]
+                          sample_labels = y_train[random_indices]
+
+                          # 2. 顯示圖片和標籤
+                          plt.figure(figsize=(15, 3))
+                          for i in range(num_images):
+                          plt.subplot(1, num_images, i + 1)
+                          plt.xticks([])
+                          plt.yticks([])
+                          plt.grid(False)
+                          plt.imshow(sample_images[i])
+                          plt.xlabel(class_names[sample_labels[i][0]])
+                          plt.show()
+                        </code>
+                      </pre>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal End -->
+            </div>
+            <hr>
+            <div class="container mb-4">
+              <div>
+                <h2>研究方式</h2>
+                <p>
+                  將使用TensorFlow和Keras構建一個卷積神經網絡（CNN），用於對CIFAR-10數據集中的圖像進行分類。CIFAR-10數據集包含60,000張32x32彩色圖像，共分為10個類別。以下是詳細步驟：
+                </p>
+              </div>
+              <div>
+                <h5>步驟一、加載和預處理CIFAR-10數據集</h5>
+                <p>首先，我們需要加載CIFAR-10數據集並對其進行預處理。這裡我們將像素值正規化到0-1之間，以便模型更快地收斂。</p>
+                <div>
+                  <pre class="bg-light p-3 rounded">
+                    <code>
+                      import tensorflow as tf
+                      from tensorflow.keras import datasets, layers, models
+                      import matplotlib.pyplot as plt
+
+                      # 加載CIFAR-10數據集
+                      (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
+
+                      # 正規化像素值到0-1之間
+                      x_train, x_test = x_train / 255.0, x_test / 255.0
+                    </code>
+                  </pre>
+                </div>
+              </div>
+              <div>
+                <h5>步驟二、構建CNN模型</h5>
+                <p>接下來，我們將構建一個簡單的CNN模型。該模型包含三個卷積層和兩個最大池化層，最後是全連接層。</p>
+                <div>
+                  <pre class="bg-light p-3 rounded">
+                    <code>
+                      # 構建CNN模型
+                      model = models.Sequential([
+                      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)),
+                      layers.MaxPooling2D((2, 2)),
+                      layers.Conv2D(64, (3, 3), activation='relu'),
+                      layers.MaxPooling2D((2, 2)),
+                      layers.Conv2D(64, (3, 3), activation='relu'),
+                      layers.Flatten(),
+                      layers.Dense(64, activation='relu'),
+                      layers.Dense(10)
+                      ])
+
+                      # 查看模型架構
+                      model.summary()
+                    </code>
+                  </pre>
+                </div>
+              </div>
+              <div>
+                <h5>步驟三、編譯和訓練模型</h5>
+                <p>在構建好模型後，我們需要編譯模型並進行訓練。這裡使用Adam優化器和Sparse Categorical Crossentropy損失函數。</p>
+                <div>
+                  <pre class="bg-light p-3 rounded">
+                    <code>
+                      # 編譯模型
+                      model.compile(optimizer='adam',
+                      loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                      metrics=['accuracy'])
+
+                      # 訓練模型
+                      history = model.fit(x_train, y_train, epochs=10,
+                      validation_data=(x_test, y_test))
+                    </code>
+                  </pre>
+                </div>
+              </div>
+              <div>
+                <h5>步驟四、可視化accuracy和loss圖表</h5>
+                <p>為了更好地理解模型的性能，我們可以可視化訓練過程中的準確率和損失變化情況。</p>
+                <div>
+                  <pre class="bg-light p-3 rounded">
+                    <code>
+                      # 可視化accuracy和loss圖表
+                      plt.figure(figsize=(12, 4))
+
+                      plt.subplot(1, 2, 1)
+                      plt.plot(history.history['accuracy'], label='訓練準確率')
+                      plt.plot(history.history['val_accuracy'], label='驗證準確率')
+                      plt.xlabel('Epoch')
+                      plt.ylabel('準確率')
+                      plt.legend(loc='lower right')
+                      plt.title('訓練和驗證準確率')
+
+                      plt.subplot(1, 2, 2)
+                      plt.plot(history.history['loss'], label='訓練損失')
+                      plt.plot(history.history['val_loss'], label='驗證損失')
+                      plt.xlabel('Epoch')
+                      plt.ylabel('損失')
+                      plt.legend(loc='upper right')
+                      plt.title('訓練和驗證損失')
+
+                      plt.show()
+                    </code>
+                  </pre>
+                </div>
+                <!--Chart-->
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="card mb-4">
+                      <div class="card-header bg-info text-white">
+                        <i class="bi bi-graph-up"></i>
+                        Model Accuracy
+                      </div>
+                      <div class="card-body"><canvas id="modelAccChart" width="100%"></canvas></div>
+                      <div class="card-footer small bg-info text-white text-end">Updated at July-28-2024</div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="card mb-4">
+                      <div class="card-header bg-warning text-white">
+                        <i class="bi bi-graph-up"></i>
+                        Model Loss
+                      </div>
+                      <div class="card-body"><canvas id="modelLossChart" width="100%"></canvas></div>
+                      <div class="card-footer small bg-warning text-white text-end">Updated at July-28-2024</div>
+                    </div>
+                  </div>
+                </div>
+                <!--AccChart Script-->
+                <script>
+                  document.addEventListener('DOMContentLoaded', (event) => {
+                    const ctx = document.getElementById('modelAccChart').getContext('2d');
+                    const modelAccChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                        datasets: [{
+                          label: 'Train Accuracy',
+                          data: [0.4480, 0.5899, 0.6485, 0.6790, 0.7064, 0.7274, 0.7478, 0.7613, 0.7767, 0.7912],
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 2,
+                          fill: false
+                        },
+                        {
+                          label: 'Test Accuracy',
+                          data: [0.5522, 0.6151, 0.6596, 0.6431, 0.6759, 0.6686, 0.6996, 0.6913, 0.6980, 0.6999],
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          borderWidth: 2,
+                          fill: false
+                        }
+                        ]
+                      },
+                      options: {
+                        scales: {
+                          x: {
+                            title: {
+                              display: true,
+                              text: 'Epochs',
+                              color: '#911',
+                              font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2
+                              }
+                            },
+                            ticks: {
+                              color: 'blue'
+                            },
+                            grid: {
+                              display: false
+                            }
+                          },
+                          y: {
+                            title: {
+                              display: true,
+                              text: 'Accuracy',
+                              color: '#191',
+                              font: {
+                                family: 'Times',
+                                size: 15,
+                                style: 'italic',
+                                lineHeight: 1.5
+                              }
+                            },
+                            ticks: {
+                              color: 'green',
+                              beginAtZero: true,
+                              stepSize: 0.05
+                            },
+                            grid: {
+                              color: 'rgba(200, 200, 200, 0.8)'
+                            },
+                            beginAtZero: true
+                          }
+                        }
+                      }
+                    });
+                  });
+                </script>
+                <!--LossChart Script-->
+                <script>
+                  document.addEventListener('DOMContentLoaded', (event) => {
+                    const ctx = document.getElementById('modelLossChart').getContext('2d');
+                    const modelLossChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                        datasets: [{
+                          label: 'Train Loss',
+                          data: [1.5082, 1.1564, 1.0044, 0.9086, 0.8345, 0.7768, 0.7187, 0.6748, 0.6309, 0.5924],
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 2,
+                          fill: false
+                        },
+                        {
+                          label: 'Test Loss',
+                          data: [1.2454, 1.0852, 0.9849, 1.027, 0.9250, 0.9670, 0.8826, 0.9129, 0.9073, 0.9014],
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          borderWidth: 2,
+                          fill: false
+                        }
+                        ]
+                      },
+                      options: {
+                        scales: {
+                          x: {
+                            title: {
+                              display: true,
+                              text: 'Epochs',
+                              color: '#911',
+                              font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2
+                              }
+                            },
+                            ticks: {
+                              color: 'blue'
+                            },
+                            grid: {
+                              display: false
+                            }
+                          },
+                          y: {
+                            title: {
+                              display: true,
+                              text: 'Loss',
+                              color: '#191',
+                              font: {
+                                family: 'Times',
+                                size: 15,
+                                style: 'italic',
+                                lineHeight: 1.5
+                              }
+                            },
+                            ticks: {
+                              color: 'green',
+                              beginAtZero: true,
+                              stepSize: 0.05
+                            },
+                            grid: {
+                              color: 'rgba(200, 200, 200, 0.8)'
+                            },
+                            beginAtZero: true
+                          }
+                        }
+                      }
+                    });
+                  });
+                </script>
+              </div>
+              <div>
+                <h5>步驟五、可視化一些測試圖片及其預測結果</h5>
+                <p>最後，我們可以可視化一些測試圖片及其預測結果，以直觀地了解模型的分類效果。</p>
+                <div>
+                  <pre class="bg-light p-3 rounded">
+                    <code>
+                      # CIFAR-10的類別名稱
+                      class_names = ['飛機', '汽車', '鳥', '貓', '鹿', '狗', '青蛙', '馬', '船', '卡車']
+
+                      # 預測測試集中的前25張圖片
+                      predictions = model.predict(x_test[:25])
+
+                      plt.figure(figsize=(10, 10))
+                      for i in range(25):
+                      plt.subplot(5, 5, i + 1)
+                      plt.xticks([])
+                      plt.yticks([])
+                      plt.grid(False)
+                      plt.imshow(x_test[i], cmap=plt.cm.binary)
+                      plt.xlabel(class_names[tf.argmax(predictions[i])])
+
+                      plt.show()
+                    </code>
+                  </pre>
+                </div>
+                <!--ImageCard-->
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <i class="bi bi-image"></i>
+                    CIFAR-10 測試結果
+                  </div>
+                  <div class="card-body text-center"><img src="assets/img/CIFAR-10img/Figure_1.png" alt="CIFAR-10測試結果"
+                      class="img-fluid">
+                    <div class="text-muted text-end">
+                      Updated at July-28-2024
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="container mb-4">
+              <div>
+                <h2>總結</h2>
+                <p>
+                  使用TensorFlow和Keras構建一個卷積神經網絡來分類CIFAR-10數據集中的圖像。首先加載並預處理數據，然後構建並訓練模型，最後可視化了模型的性能和預測結果。這是一個簡單而有效的示例，可以作為進一步研究和改進的基礎。
+                </p>
+              </div>
+            </div>
+            <hr>
+            <div class="container mb-4">
+              <div>
+                <h5>相關連結</h5>
+                <a href="https://colab.research.google.com/drive/1oUDqxA2mxPRh3HzTew8ab7-Rd-XtnzEh?usp=sharing"><i
+                    class="bi bi-code-square"></i> Google
+                  Colab連結</a>
+              </div>
+            </div>
+          </div>
+      </main>
+      <!--footer-->
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Abby's Website 2024</div>
+
+          </div>
+        </div>
+      </footer>
+      <!--===============================-->
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
