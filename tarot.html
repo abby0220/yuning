@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>LINE官方帳號結合Gemini塔羅牌占卜</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-lg order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        class="fas fa-bars"></i></button>
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Abby's</a>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <!--SideNav Menu-->
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <!--基本資料-->
+            <div class="sb-sidenav-menu-heading">基本資料</div>
+            <a class="nav-link" href="index.html">
+              <div class="sb-nav-link-icon"><i class="bi bi-person-circle"></i></div>
+              個人簡歷
+            </a>
+            <!--作品集-->
+            <div class="sb-sidenav-menu-heading">作品集</div>
+            <!--深度學習-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              深度學習
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="MNIST.html">MNIST 手寫辨識</a>
+                <a class="nav-link" href="cifar10.html">CIFAR-10 彩色影像辨識</a>
+                <a class="nav-link" href="beanleaf.html">Kaggle Dataset 豆葉病害分類</a>
+              </nav>
+            </div>
+            <!--資料處理-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+              aria-expanded="false" aria-controls="collapsePages">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              資料處理
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="covid.html">台灣2024新冠年齡層統計</a>
+                <a class="nav-link" href="2330.html">股市分析 以台積電為例</a>
+              </nav>
+            </div>
+
+            <!--Python 基礎應用-->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePython"
+              aria-expanded="false" aria-controls="collapsePython">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-p-square"></i>
+              </div>
+              Python 基礎應用
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePython" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="PSTGame.html">剪刀石頭布小遊戲</a>
+                <a class="nav-link" href="Dice.html">擲骰子小遊戲</a>
+                <a class="nav-link" href="tarot.html">LINE官方帳號結合Gemini塔羅牌占卜</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--===============================-->
+    <!--Content-->
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">LINE官方帳號結合Gemini塔羅牌占卜</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">作品集</li>
+            <li class="breadcrumb-item">Python 基礎應用</li>
+            <li class="breadcrumb-item active">LINE官方帳號結合Gemini塔羅牌占卜</li>
+          </ol>
+          <!--實驗方法-->
+          <div class="container mb-4">
+            <h2>說明</h2>
+            <p>創建LINE官方帳號利用Python程式碼結合Google Gemini API來達成每日運勢的占卜頻道。</p>
+            <div class="card mb-4" style="width: 350px;">
+              <div class="card-header">
+                <i class="bi bi-image"></i> 今日運勢 成果
+              </div>
+              <div class="card-body">
+                <img src="assets/img/tarot/LINE1.PNG" alt="今日運勢" class="img-fluid" style="height: 600px;">
+                <div class="text-muted text-end">
+                  Updated at September-2-2024
+                </div>
+              </div>
+            </div>
+            <hr>
+            <h2>事前準備</h2>
+            <div>
+              <ul>
+                <li>建立一個<a href="https://developers.line.biz/en/"><i class="bi bi-box-arrow-up-right"></i>
+                    LINE官方帳號</a>，完成基本設定並加入LINE好友</li>
+                <li>申請一組<a href="https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw"><i
+                      class="bi bi-box-arrow-up-right"></i>
+                    Google Gemini API</a></li>
+                <li>下載<a href="https://ngrok.com/"><i class="bi bi-box-arrow-up-right"></i>
+                    ngrok</a>，使用token建立Webhook URL，與LINE官方帳號連結成功</li>
+              </ul>
+            </div>
+            <hr>
+            <h2>Python 程式</h2>
+            <h5>步驟一、Python環境配置</h5>
+            <p>請確定Python版本為3.10以上，並完成安裝下列套件。</p>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  pip install flask
+                  pip install line-bot-sdk
+                  pip install google-generativeai
+                  pip install Pillow
+                </code>
+              </pre>
+            </div>
+            <h5>步驟二、引入必要的函式庫</h5>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  import os
+                  import random
+                  from flask import Flask, request, abort
+                  from linebot import LineBotApi, WebhookHandler
+                  from linebot.exceptions import InvalidSignatureError
+                  from linebot.models import MessageEvent, TextMessage, ImageMessage, AudioMessage, VideoMessage,
+                  TextSendMessage
+                  from PIL import Image
+                  import io
+                  import google.generativeai as genai
+                </code>
+              </pre>
+            </div>
+            <h5>步驟三、設定Google Gemini</h5>
+            <p>填入Gemini API，並確保Gemini模型為gemini-1.5-flash穩定版。</p>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  # 設定Gemini API 密鑰
+                  api_key = "API 密鑰"
+                  genai.configure(api_key=api_key)
+
+                  #連接GEMINI模型
+                  model = genai.GenerativeModel('gemini-1.5-flash')
+                </code>
+              </pre>
+            </div>
+            <h5>步驟四、建立LINE BOT連線環境</h5>
+            <p>填入LINE開發平台 token key與LINE開發平台 secret key</p>
+            <div>
+              <pre class="bg-light p-3 rounded">
+                <code>
+                  # 設定 LINE BOT 的 Channel Secret 和 Channel Access Token
+                  line_bot_api = LineBotApi('LINE開發平台 token key')
+                  handler = WebhookHandler('LINE開發平台 secret key')
+
+                  app = Flask(__name__)
+
+                  # LINE BOT的 Webhook 路由
+                  @app.route("/callback", methods=['POST'])
+                  def callback():
+                  # 確認請求來自LINE伺服器
+                  signature = request.headers['X-Line-Signature']
+                  body = request.get_data(as_text=True)
+                  try:
+                  handler.handle(body, signature)
+                  except InvalidSignatureError:
+                  abort(400)
+                  return 'OK'
+
+                  if __name__ == "__main__":
+                  port = int(os.environ.get('PORT', 5000))
+                  app.run(host='0.0.0.0', port=port, debug=True)
+                </code>
+              </pre>
+              <h5>步驟五、建立Line-BOT事件處理框架</h5>
+              <p>建立塔羅牌列表，並建立今日運勢解釋的prompt給Gemini。</p>
+              <div>
+                <pre>
+                  <code>
+                    # 定義塔羅牌列表
+                    tarot_cards = [
+                    "愚人", "魔術師", "女祭司", "皇后", "皇帝", "教皇", "戀人", "戰車",
+                    "力量", "隱士", "命運之輪", "正義", "倒吊者", "節制", "惡魔", "塔",
+                    "星星", "月亮", "太陽", "審判", "世界", "死神"
+                    ]
+
+                    # 處理來自 LINE 的文字消息
+                    @handler.add(MessageEvent, message=TextMessage)
+                    def handle_message(event):
+                    user_message = event.message.text
+
+                    if user_message == '@一張牌':
+                    # 隨機選擇一張塔羅牌
+                    selected_card = random.choice(tarot_cards)
+                    prompt = f"請解釋塔羅牌今日運勢的牌義：{selected_card}"
+                    else:
+                    prompt = user_message
+
+                    try:
+                    # 使用 Google Generative AI 生成回應
+                    response = model.generate_content(prompt)
+                    reply_text = response.text
+                    except Exception as e:
+                    reply_text = f"抱歉，生成內容時發生錯誤：{str(e)}"
+
+                    # 回覆用戶的消息
+                    try:
+                    line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                    )
+                    except Exception as e:
+                    app.logger.error(f"Error replying message: {str(e)}")
+                  </code>
+                </pre>
+              </div>
+              <hr>
+              <h5>相關連結</h5>
+              <a href="https://developers.line.biz/en/?status=success"><i class="bi bi-box-arrow-up-right"></i> LINE
+                Developers</a> &middot;
+              <a href="https://ai.google.dev/"><i class="bi bi-box-arrow-up-right"></i>
+                Google AI for Developers</a> &middot;
+              <a href="https://ngrok.com/"><i class="bi bi-box-arrow-up-right"></i>
+                ngrok</a>
+            </div>
+          </div>
+      </main>
+      <!--================================-->
+      <!--footer-->
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+          </div>
+        </div>
+      </footer>
+      <!--================================-->
+    </div>
+  </div>
+  <!--Scripts-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
