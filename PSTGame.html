@@ -168,55 +168,55 @@
                   <code>
                     import random
                     import tkinter as tk
-
+                    
                     def choose():
-                    msg.set("你出：" + ball[int(chioce.get())])
-
+                        msg.set("你出：" + ball[int(chioce.get())])
+                    
                     def whowin():
-                    global com
-                    com = random.randint(0, 2)
-                    user_choice = int(chioce.get())
-                    msg.set('你出的是：{}'.format(ball[user_choice]))
-                    if (user_choice + 1) % 3 == com:
-                    msg.set('電腦出的是：{}，電腦贏'.format(ball[com]))
-                    elif (com + 1) % 3 == user_choice:
-                    msg.set('電腦出的是：{}，電腦輸'.format(ball[com]))
-                    else:
-                    msg.set('電腦出的是：{}，平手'.format(ball[com]))
-
+                        global com
+                        com = random.randint(0, 2)
+                        user_choice = int(chioce.get())
+                        msg.set('你出的是：{}'.format(ball[user_choice]))
+                        if (user_choice + 1) % 3 == com:
+                            msg.set('電腦出的是：{}，電腦贏'.format(ball[com]))
+                        elif (com + 1) % 3 == user_choice:
+                            msg.set('電腦出的是：{}，電腦輸'.format(ball[com]))
+                        else:
+                            msg.set('電腦出的是：{}，平手'.format(ball[com]))
+                    
                     # 初始化
                     com = 0
                     ball = ["剪刀", "石頭", "布"]
                     val = [0, 1, 2]
-
+                    
                     win = tk.Tk()
                     win.title("剪刀石頭布遊戲")
-
+                    
                     # 設定視窗大小
-                    win.geometry("300x200") # 寬300, 高200
-                    win.minsize(300, 200) # 最小寬度300, 高度200
-                    win.maxsize(300, 200) # 最大寬度300, 高度200
-
+                    win.geometry("300x200")  # 寬300, 高200
+                    win.minsize(300, 200)    # 最小寬度300, 高度200
+                    win.maxsize(300, 200)    # 最大寬度300, 高度200
+                    
                     chioce = tk.StringVar()
-                    chioce.set("0") # 預設選擇
-
+                    chioce.set("0")  # 預設選擇
+                    
                     msg = tk.StringVar()
                     msg.set("請選擇你要出的：")
-
+                    
                     label = tk.Label(win, text="請選擇你要出的：")
                     label.pack()
-
+                    
                     for i in range(3):
-                    item = tk.Radiobutton(win, text=ball[i], value=val[i], variable=chioce, command=choose)
-                    item.pack()
-
+                        item = tk.Radiobutton(win, text=ball[i], value=val[i], variable=chioce, command=choose)
+                        item.pack()
+                    
                     lblmsg = tk.Label(win, fg='red', textvariable=msg)
                     lblmsg.pack()
-
+                    
                     # 按鈕來開始比賽
                     btn = tk.Button(win, text="開始", command=whowin)
                     btn.pack()
-
+                    
                     win.mainloop()
                   </code>
                 </pre>
