@@ -166,18 +166,18 @@ modal-dialog-centered modal-dialog-scrollable">
                         # 找到每個數字的第一個範例
                         examples = {}
                         for i in range(10):
-                        for j in range(len(y_train)):
-                        if y_train[j] == i:
-                        examples[i] = x_train[j]
-                        break
+                            for j in range(len(y_train)):
+                                if y_train[j] == i:
+                                    examples[i] = x_train[j]
+                                    break
 
                         # 顯示每個數字的範例圖片
                         plt.figure(figsize=(10, 5))
                         for i in range(10):
-                        plt.subplot(2, 5, i+1)
-                        plt.imshow(examples[i], cmap='gray')
-                        plt.title(f"Digit: {i}")
-                        plt.axis('off')
+                            plt.subplot(2, 5, i+1)
+                            plt.imshow(examples[i], cmap='gray')
+                            plt.title(f"Digit: {i}")
+                            plt.axis('off')
                         plt.tight_layout()
                         plt.show()
                       </code>
@@ -242,14 +242,14 @@ modal-dialog-centered modal-dialog-scrollable">
 
                     # 建立模型
                     model = Sequential([
-                    Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
-                    MaxPooling2D(pool_size=(2, 2)),
-                    Conv2D(64, kernel_size=(3, 3), activation='relu'),
-                    MaxPooling2D(pool_size=(2, 2)),
-                    Flatten(),
-                    Dense(128, activation='relu'),
-                    Dropout(0.5),
-                    Dense(10, activation='softmax')
+                        Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+                        MaxPooling2D(pool_size=(2, 2)),
+                        Conv2D(64, kernel_size=(3, 3), activation='relu'),
+                        MaxPooling2D(pool_size=(2, 2)),
+                        Flatten(),
+                        Dense(128, activation='relu'),
+                        Dropout(0.5),
+                        Dense(10, activation='softmax')
                     ])
 
                     # 編譯模型
