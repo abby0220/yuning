@@ -186,6 +186,12 @@ modal-dialog-centered modal-dialog-scrollable">
                         import tensorflow as tf
                         import matplotlib.pyplot as plt
                         import numpy as np
+                        import matplotlib.font_manager as fm
+                        
+                        # 加載中文字型
+                        font_path = 'C:/Windows/Fonts/msjhbd.ttc'  # 微軟正黑體
+                        prop = fm.FontProperties(fname=font_path)
+                        plt.rcParams['font.family'] = prop.get_name()
                         
                         # 1. 加載CIFAR-10數據集
                         (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
@@ -200,7 +206,6 @@ modal-dialog-centered modal-dialog-scrollable">
                         sample_labels = y_train[random_indices]
                         
                         # 2. 顯示圖片和標籤
-                        plt.rcParams["font.sans-serif"] = "Noto Sans TC"
                         plt.figure(figsize=(15, 3))
                         for i in range(num_images):
                             plt.subplot(1, num_images, i + 1)
@@ -256,14 +261,14 @@ modal-dialog-centered modal-dialog-scrollable">
                     <code>
                       # 構建CNN模型
                       model = models.Sequential([
-                      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)),
-                      layers.MaxPooling2D((2, 2)),
-                      layers.Conv2D(64, (3, 3), activation='relu'),
-                      layers.MaxPooling2D((2, 2)),
-                      layers.Conv2D(64, (3, 3), activation='relu'),
-                      layers.Flatten(),
-                      layers.Dense(64, activation='relu'),
-                      layers.Dense(10)
+                          layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)),
+                          layers.MaxPooling2D((2, 2)),
+                          layers.Conv2D(64, (3, 3), activation='relu'),
+                          layers.MaxPooling2D((2, 2)),
+                          layers.Conv2D(64, (3, 3), activation='relu'),
+                          layers.Flatten(),
+                          layers.Dense(64, activation='relu'),
+                          layers.Dense(10)
                       ])
 
                       # 查看模型架構
@@ -280,12 +285,12 @@ modal-dialog-centered modal-dialog-scrollable">
                     <code>
                       # 編譯模型
                       model.compile(optimizer='adam',
-                      loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-                      metrics=['accuracy'])
+                                    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                                    metrics=['accuracy'])
 
                       # 訓練模型
                       history = model.fit(x_train, y_train, epochs=10,
-                      validation_data=(x_test, y_test))
+                                          validation_data=(x_test, y_test))
                     </code>
                   </pre>
                 </div>
@@ -501,12 +506,12 @@ modal-dialog-centered modal-dialog-scrollable">
 
                       plt.figure(figsize=(10, 10))
                       for i in range(25):
-                      plt.subplot(5, 5, i + 1)
-                      plt.xticks([])
-                      plt.yticks([])
-                      plt.grid(False)
-                      plt.imshow(x_test[i], cmap=plt.cm.binary)
-                      plt.xlabel(class_names[tf.argmax(predictions[i])])
+                          plt.subplot(5, 5, i + 1)
+                          plt.xticks([])
+                          plt.yticks([])
+                          plt.grid(False)
+                          plt.imshow(x_test[i], cmap=plt.cm.binary)
+                          plt.xlabel(class_names[tf.argmax(predictions[i])])
 
                       plt.show()
                     </code>
