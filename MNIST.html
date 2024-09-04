@@ -486,6 +486,40 @@ modal-dialog-centered modal-dialog-scrollable">
               <div>
                 <pre class="bg-light p-3 rounded">
                   <code>
+                    # 預測測試集
+                    predictions = model.predict(x_test)
+                    
+                    # 顯示一些測試結果
+                    num_images = 10
+                    plt.figure(figsize=(10, 10))
+                    for i in range(num_images):
+                        plt.subplot(5, 5, i + 1)
+                        plt.imshow(x_test[i].reshape(28, 28), cmap='gray')
+                        plt.title(f"True: {np.argmax(y_test[i])}, Pred: {np.argmax(predictions[i])}")
+                        plt.axis('off')
+                    plt.tight_layout()
+                    plt.show()
+                  </code>
+                </pre>
+              </div>
+              <p>顯示 10 張測試圖像，每張圖像的標題包含了實際標籤和模型預測的結果。</p>
+
+              <!--ImageCard-->
+              <!--預測結果-->
+              <div class="card mb-4">
+                <div class="card-header"><i class="bi bi-image"></i>
+                  預測結果
+                </div>
+                <div class="card-body text-center">
+                  <img src="assets/img/MNISTfinaldig.png" alt="預測結果" class="img-fluid">
+                  <div class="text-muted text-end">Updated at July-27-2024</div>
+                </div>
+              </div>
+              <!--混淆矩陣-->
+              <p>混淆矩陣可以更好地了解模型的性能</p>
+                            <div>
+                <pre class="bg-light p-3 rounded">
+                  <code>
                     from sklearn.metrics import confusion_matrix
                     import seaborn as sns
 
@@ -508,21 +542,6 @@ modal-dialog-centered modal-dialog-scrollable">
                   </code>
                 </pre>
               </div>
-              <p>這段代碼將顯示 10 張測試圖像，每張圖像的標題包含了實際標籤和模型預測的結果。</p>
-
-              <!--ImageCard-->
-              <!--預測結果-->
-              <div class="card mb-4">
-                <div class="card-header"><i class="bi bi-image"></i>
-                  預測結果
-                </div>
-                <div class="card-body text-center">
-                  <img src="assets/img/MNISTfinaldig.png" alt="預測結果" class="img-fluid">
-                  <div class="text-muted text-end">Updated at July-27-2024</div>
-                </div>
-              </div>
-              <!--混淆矩陣-->
-              <p>混淆矩陣可以更好地了解模型的性能</p>
               <div class="card mb-4">
                 <div class="card-header"><i class="bi bi-image"></i>
                   混淆矩陣
